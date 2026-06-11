@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import { getProductById, getRelatedProducts } from '@/lib/products';
 
-export default function ProductDetailPage({ params }) {
-  // params থেকে id নেওয়া হচ্ছে
+export default function ProductDetailPage({ params: paramsPromise }) {
+  // Next.js-এর নতুন নিয়ম অনুযায়ী params আনর‍্যাপ করা হয়েছে
+  const params = use(paramsPromise); 
   const product = getProductById(params.id);
   const [quantity, setQuantity] = useState(1);
   const relatedProducts = getRelatedProducts(params.id);
@@ -29,7 +30,6 @@ export default function ProductDetailPage({ params }) {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Link
           href="/products"
@@ -39,61 +39,47 @@ export default function ProductDetailPage({ params }) {
         </Link>
       </div>
 
-      {/* Product Details */}
       <div className="max-w-7xl mx-auto px-4 pb-16">
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Product Image */}
+          {/* Image */}
           <div className="flex flex-col">
             <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-96 flex items-center justify-center mb-6">
               <div className="text-9xl">{product.icon}</div>
             </div>
           </div>
 
-          {/* Product Info */}
+          {/* Info */}
           <div>
             <span className="inline-block bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4">
               {product.category}
             </span>
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">{product.name}</h1>
 
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">{product.title || product.name}</h1>
-
-            {/* Rating */}
             <div className="flex items-center gap-4 mb-6">
               <div className="flex gap-1">
                 {[...Array(Math.floor(product.rating || 0))].map((_, i) => (
                   <span key={i} className="text-yellow-400 text-3xl">⭐</span>
                 ))}
               </div>
-              <span className="text-lg font-bold text-gray-600">
-                {product.rating} out of 5
-              </span>
+              <span className="text-lg font-bold text-gray-600">{product.rating} out of 5</span>
             </div>
 
-            {/* Price */}
             <div className="mb-6">
               <p className="text-gray-600 text-sm font-semibold mb-2">Price</p>
               <p className="text-5xl font-bold text-blue-600">${product.price}</p>
             </div>
 
-            {/* Stock Status */}
             <div className="mb-6">
-              {product.inStock ? (
-                <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-lg font-bold text-lg">
-                  ✓ In Stock
-                </div>
-              ) : (
-                <div className="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-lg font-bold text-lg">
-                  ✗ Out of Stock
-                </div>
-              )}
+              <span className={`inline-block px-4 py-2 rounded-lg font-bold text-lg ${
+                product.inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+              }`}>
+                {product.inStock ? '✓ In Stock' : '✗ Out of Stock'}
+              </span>
             </div>
 
-            {/* Description */}
-            <div className="mb-8">
-              <p className="text-gray-700 text-lg leading-relaxed">{product.description}</p>
-            </div>
+            <p className="text-gray-700 text-lg leading-relaxed mb-8">{product.description}</p>
 
-            {/* Quantity and Add to Cart */}
+            {/* Quantity */}
             <div className="mb-8">
               <label className="block text-sm font-semibold text-gray-700 mb-3">Quantity:</label>
               <div className="flex items-center gap-4">
@@ -116,7 +102,7 @@ export default function ProductDetailPage({ params }) {
 
             <button
               disabled={!product.inStock}
-              className={`w-full py-4 rounded-lg font-bold text-lg text-white transition duration-300 ${
+              className={`w-full py-4 rounded-lg font-bold text-lg text-white transition ${
                 product.inStock ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'
               }`}
             >
@@ -125,7 +111,7 @@ export default function ProductDetailPage({ params }) {
           </div>
         </div>
 
-        {/* Specifications */}
+        {/* Specs */}
         <div className="mt-16 py-12 border-t border-gray-300">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Specifications</h2>
           <ul className="space-y-3">
