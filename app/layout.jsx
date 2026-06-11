@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth-context";
+import { ProductProvider } from "@/context/ProductContext"; // 👈 ১. এখানে প্রোডাক্ট প্রোভাইডার ইম্পোর্ট করলাম
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,9 +28,11 @@ export default function RootLayout({ children }) {
     >
       <body className="bg-gray-50 h-full flex flex-col">
         <AuthProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ProductProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ProductProvider>
         </AuthProvider>
       </body>
     </html>
