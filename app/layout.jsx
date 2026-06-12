@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth-context";
-import { ProductProvider } from "@/context/ProductContext"; 
+import { ProductProvider } from "@/context/ProductContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "ShopHub - E-Commerce Store",
+  title: "TechVault - E-Commerce Store",
   description: "A modern e-commerce platform built with Next.js",
 };
 

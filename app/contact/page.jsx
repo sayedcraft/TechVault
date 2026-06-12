@@ -18,97 +18,75 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Add email sending logic here
     setSubmitted(true);
     setFormData({ name: "", email: "", subject: "", message: "" });
     setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-blue-600 to-indigo-700 pt-20 pb-32 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl text-blue-100">We'd love to hear from you</p>
+          <h1 className="text-5xl font-black mb-4">Contact Us</h1>
+          <p className="text-blue-100 text-lg">
+            We had love to hear from you. Reach out to our team anytime.
+          </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="max-w-4xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">
-                Get In Touch
-              </h2>
-              <p className="text-lg text-gray-700 mb-4">
-                Have a question or feedback? We'd love to hear from you. Fill
-                out the form and we'll get back to you as soon as possible.
-              </p>
-            </div>
+      {/* Main Content Card */}
+      <section className="max-w-6xl mx-auto px-4 -mt-20">
+        <div className="bg-white rounded-3xl shadow-xl shadow-gray-200 p-8 md:p-12 grid md:grid-cols-2 gap-12 border border-gray-100">
+          {/* Contact Details */}
+          <div>
+            <h2 className="text-3xl font-black text-gray-900 mb-6">
+              Get In Touch
+            </h2>
+            <p className="text-gray-600 mb-10 font-medium">
+              Have a question or feedback? Fill out the form and we'll get back
+              to you as soon as possible.
+            </p>
 
-            <div className="space-y-4">
-              <div className="flex gap-4">
-                <span className="text-3xl">📧</span>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800">Email</h3>
-                  <p className="text-gray-700">support@shophub.com</p>
+            <div className="space-y-6">
+              {[
+                { icon: "📧", title: "Email", value: "support@TechVault.com" },
+                { icon: "📞", title: "Phone", value: "+1 (555) 123-4567" },
+                {
+                  icon: "📍",
+                  title: "Address",
+                  value: "123 Commerce Street, NY 10001",
+                },
+                { icon: "⏰", title: "Hours", value: "Mon-Fri: 9AM - 6PM" },
+              ].map((item, idx) => (
+                <div key={idx} className="flex gap-4 items-start">
+                  <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl shrink-0">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">{item.title}</h3>
+                    <p className="text-gray-600 text-sm">{item.value}</p>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex gap-4">
-                <span className="text-3xl">📞</span>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800">Phone</h3>
-                  <p className="text-gray-700">+1 (555) 123-4567</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <span className="text-3xl">📍</span>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    Address
-                  </h3>
-                  <p className="text-gray-700">123 Commerce Street, NY 10001</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <span className="text-3xl">⏰</span>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    Business Hours
-                  </h3>
-                  <p className="text-gray-700">
-                    Monday - Friday: 9:00 AM - 6:00 PM
-                  </p>
-                  <p className="text-gray-700">
-                    Saturday - Sunday: 10:00 AM - 4:00 PM
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-50 p-8 rounded-lg">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+          <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+            <h2 className="text-2xl font-black text-gray-900 mb-6">
               Send us a Message
             </h2>
 
             {submitted && (
-              <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-                ✓ Thank you! We've received your message. We'll get back to you
-                soon!
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl font-bold text-center">
+                ✓ Message received! We'll be in touch.
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">
+                <label className="block text-sm font-bold text-gray-700 mb-1.5">
                   Name
                 </label>
                 <input
@@ -117,13 +95,13 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  placeholder="Your name"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  placeholder="John Doe"
                 />
               </div>
 
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">
+                <label className="block text-sm font-bold text-gray-700 mb-1.5">
                   Email
                 </label>
                 <input
@@ -132,13 +110,13 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  placeholder="your@email.com"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  placeholder="john@example.com"
                 />
               </div>
 
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">
+                <label className="block text-sm font-bold text-gray-700 mb-1.5">
                   Subject
                 </label>
                 <input
@@ -147,13 +125,13 @@ export default function ContactPage() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  placeholder="How can we help?"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  placeholder="Need help with..."
                 />
               </div>
 
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">
+                <label className="block text-sm font-bold text-gray-700 mb-1.5">
                   Message
                 </label>
                 <textarea
@@ -161,15 +139,15 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  placeholder="Your message..."
+                  rows={4}
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+                  placeholder="Tell us what's on your mind..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-3 rounded-xl transition-all active:scale-[0.98] shadow-lg shadow-blue-600/20"
               >
                 Send Message
               </button>

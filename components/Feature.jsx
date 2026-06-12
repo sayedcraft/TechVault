@@ -1,46 +1,49 @@
-'use client';
+"use client";
 
-import { Truck, ShieldCheck, ArrowLeftRight } from 'lucide-react';
+import { Truck, ShieldCheck, ArrowLeftRight } from "lucide-react";
 
 export default function Feature() {
   const features = [
     {
       id: 1,
-      title: 'Free Shipping',
-      description: 'Free shipping on all orders over $50. Fast and reliable delivery directly to your doorstep without any hidden costs.',
+      title: "Free Shipping",
+      description:
+        "Free shipping on all orders over $50. Fast and reliable delivery directly to your doorstep without any hidden costs.",
       icon: Truck,
-      bgClass: 'bg-blue-50 text-blue-600 border-blue-100',
+      bgClass: "bg-blue-50 text-blue-600 border-blue-100",
     },
     {
       id: 2,
-      title: 'Secure Payment',
-      description: '100% secure transactions integrated with Firebase authentication. Your privacy and data security are our top priorities.',
+      title: "Secure Payment",
+      description:
+        "100% secure transactions integrated with Firebase authentication. Your privacy and data security are our top priorities.",
       icon: ShieldCheck,
-      bgClass: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+      bgClass: "bg-emerald-50 text-emerald-600 border-emerald-100",
     },
     {
       id: 3,
-      title: 'Easy Returns',
-      description: 'Hassle-free 30-day return guarantee. No complicated paperwork or questions asked. Shop with absolute confidence.',
+      title: "Easy Returns",
+      description:
+        "Hassle-free 30-day return guarantee. No complicated paperwork or questions asked. Shop with absolute confidence.",
       icon: ArrowLeftRight,
-      bgClass: 'bg-purple-50 text-purple-600 border-purple-100',
+      bgClass: "bg-purple-50 text-purple-600 border-purple-100",
     },
   ];
 
   return (
     <section className="bg-white py-20 lg:py-28 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* 📢 সেকশন হেডার */}
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
           <h2 className="text-3xl sm:text-5xl font-black text-gray-900 tracking-tight mb-4">
-            Why Choose{' '}
+            Why Choose{" "}
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              ShopHub?
+              TechVault?
             </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-500 font-medium">
-            We provide the ultimate e-commerce experience combined with exceptional service, speed, and reliability.
+            We provide the ultimate e-commerce experience combined with
+            exceptional service, speed, and reliability.
           </p>
         </div>
 
@@ -56,7 +59,9 @@ export default function Feature() {
                 {/* কার্ডের ভেতর টপ-ডিজাইন এলিমেন্ট */}
                 <div>
                   {/* 🌌 মডার্ন আইকন বক্স */}
-                  <div className={`inline-flex items-center justify-center p-4 rounded-xl border mb-6 transition-colors duration-300 ${item.bgClass}`}>
+                  <div
+                    className={`inline-flex items-center justify-center p-4 rounded-xl border mb-6 transition-colors duration-300 ${item.bgClass}`}
+                  >
                     <IconComponent className="w-8 h-8" strokeWidth={2} />
                   </div>
 
@@ -77,7 +82,6 @@ export default function Feature() {
             );
           })}
         </div>
-
       </div>
     </section>
   );

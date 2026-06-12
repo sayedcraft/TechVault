@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { productsData } from '@/lib/products';
-import { createContext, useContext, useState, useEffect } from 'react';
+import { productsData } from "@/lib/products";
+import { createContext, useContext, useState, useEffect } from "react";
 // import { productsData } from '@/lib/products';
 
 const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('shophub_products');
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("TechVault_products");
       return saved ? JSON.parse(saved) : productsData;
     }
     return productsData;
   });
 
   useEffect(() => {
-    localStorage.setItem('shophub_products', JSON.stringify(products));
+    localStorage.setItem("TechVault_products", JSON.stringify(products));
   }, [products]);
 
   const addProduct = (newProduct) => {

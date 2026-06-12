@@ -15,7 +15,7 @@ export default function Navbar() {
           href="/"
           className="text-2xl font-black text-blue-600 tracking-tight"
         >
-          ShopHub
+          TechVault
         </Link>
 
         {/* Links */}

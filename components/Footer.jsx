@@ -9,7 +9,7 @@ export default function Footer() {
         {/* ১. ব্র্যান্ড ইনফো ও সোশ্যাল লিংক */}
         <div className="flex flex-col items-center md:items-start gap-6">
           <div>
-            <h3 className="text-blue-600 font-black text-2xl tracking-tight mb-3">ShopHub</h3>
+            <h3 className="text-blue-600 font-black text-2xl tracking-tight mb-3">TechVault</h3>
             <p className="text-sm text-gray-500 leading-relaxed max-w-sm">
               Discover amazing items at unbeatable prices. Your single destination for smarter and premium shopping.
             </p>
@@ -48,7 +48,7 @@ export default function Footer() {
         <div className="flex flex-col gap-3">
           <h4 className="text-gray-900 font-bold text-base uppercase tracking-wider mb-2">Contact Us</h4>
           <p className="text-sm text-gray-500 font-medium"> Chattogram, Bangladesh</p>
-          <p className="text-sm text-gray-500 font-medium"> support@shophub.com</p>
+          <p className="text-sm text-gray-500 font-medium"> support@TechVault.com</p>
         </div>
 
       </div>
@@ -57,7 +57,7 @@ export default function Footer() {
       <div className="border-t border-gray-100 bg-gray-50 py-6 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-xs sm:text-sm font-medium text-black">
-            &copy; {new Date().getFullYear()} ShopHub Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} TechVault Inc. All rights reserved.
           </p>
         </div>
       </div>
