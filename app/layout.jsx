@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth-context";
-import { ProductProvider } from "@/context/ProductContext"; // 👈 ১. এখানে প্রোডাক্ট প্রোভাইডার ইম্পোর্ট করলাম
+import { ProductProvider } from "@/context/ProductContext"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
