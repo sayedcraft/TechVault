@@ -10,7 +10,6 @@ export default function ProductCard({ product }) {
         <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
           {product.category}
         </span>
-        {/* এখানে product.title এর বদলে product.name করা হয়েছে */}
         <h3 className="text-xl font-bold text-gray-900 mt-2 mb-1 line-clamp-1">
           {product.name} 
         </h3>

@@ -29,7 +29,6 @@ export default function AddItemPage() {
     if (categories.length > 0 && !formData.category) {
       setFormData((prev) => ({ ...prev, category: categories[0] }));
     }
-
     if (!authLoading && !user) {
       router.push('/login');
     }
@@ -75,7 +74,6 @@ export default function AddItemPage() {
       addProduct(newItem);
       setSubmitted(true);
       setFormData({ name: '', shortDesc: '', description: '', price: '', category: categories[0], icon: '⚡' });
-
       setTimeout(() => {
         setSubmitted(false);
         router.push('/items');
@@ -127,7 +125,7 @@ export default function AddItemPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   placeholder="e.g. Mechanical Keyboard"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
                 />
               </div>
               <div>
@@ -138,7 +136,7 @@ export default function AddItemPage() {
                   value={formData.icon}
                   onChange={(e) => setFormData({...formData, icon: e.target.value})}
                   placeholder="⚡"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-center text-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-center text-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
                 />
               </div>
             </div>
@@ -150,7 +148,7 @@ export default function AddItemPage() {
                 value={formData.shortDesc}
                 onChange={(e) => setFormData({...formData, shortDesc: e.target.value})}
                 placeholder="e.g. RGB Backlit, Mechanical Switches"
-                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
               />
             </div>
 
@@ -162,7 +160,7 @@ export default function AddItemPage() {
                   value={formData.price}
                   onChange={(e) => setFormData({...formData, price: e.target.value})}
                   placeholder="0.00"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
                 />
               </div>
               <div>
@@ -170,7 +168,7 @@ export default function AddItemPage() {
                 <select 
                   value={formData.category}
                   onChange={(e) => setFormData({...formData, category: e.target.value})}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>{cat}</option>
@@ -186,7 +184,7 @@ export default function AddItemPage() {
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
                 placeholder="Tell users more about this awesome gadget..."
-                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition resize-none placeholder-gray-400"
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition resize-none placeholder-gray-400"
               />
             </div>
 

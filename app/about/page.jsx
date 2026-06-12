@@ -38,12 +38,10 @@ export default function AboutPage() {
 
   return (
     <div className="bg-gray-50 min-h-screen relative overflow-hidden py-20">
-      {/* 🔮 ব্যাকগ্রাউন্ড গ্লো ইফেক্টস */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto px-4 relative z-10">
-        {/* 🎯 হেডার সেকশন */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-6 tracking-tight">
             About{" "}
@@ -58,7 +56,6 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* ⚡ ফিচার গ্রিড সেকশন */}
         <div className="mt-12">
           <h2 className="text-2xl font-black text-gray-900 mb-8 text-center sm:text-left">
             Key Features Implemented
@@ -86,7 +83,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* 🤝 ফুটার বা কল-টু-অ্যাকশন ব্যানার */}
         <div className="mt-16 bg-gradient-to-br from-gray-900 via-blue-950 to-indigo-950 p-8 sm:p-12 rounded-3xl text-white text-center shadow-xl shadow-blue-950/10">
           <h3 className="text-xl sm:text-2xl font-bold mb-3">
             Want to see it in action?

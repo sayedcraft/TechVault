@@ -6,26 +6,16 @@ import ProductCard from '@/components/ProductCard';
 import { useProduct } from '@/context/ProductContext';
 
 export default function ItemDetailPage({ params: paramsPromise }) {
-  // Next.js 15 এর নিয়ম অনুযায়ী params আনর‍্যাপ করা হলো
   const params = use(paramsPromise);
-  
-  // 📥 কনটেক্সট থেকে সব প্রোডাক্ট নিয়ে আসলাম
   const { products } = useProduct();
   
-  // ডাইনামিক স্টেট থেকে কারেন্ট প্রোডাক্টটি খুঁজে বের করছি
-  // ডাটা টাইপ মিলানোর জন্য String() ব্যবহার করা হয়েছে
   const product = products.find((p) => String(p.id) === String(params.id));
-  
   const [quantity, setQuantity] = useState(1);
 
-  // ডিবাগিংয়ের জন্য লগ (প্রয়োজন হলে কনসোল চেক করতে পারবে)
   useEffect(() => {
-    console.log("Current Products:", products);
-    console.log("Searching for ID:", params.id);
     console.log("Found Product:", product);
-  }, [products, params.id, product]);
+  }, [product]);
 
-  // 🔄 একই ক্যাটাগরির রিলেটেড প্রোডাক্ট ফিল্টার করা
   const relatedProducts = products.filter(
     (p) => p.category === product?.category && String(p.id) !== String(params.id)
   );
@@ -107,18 +97,18 @@ export default function ItemDetailPage({ params: paramsPromise }) {
                   <button
                     type="button"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-bold"
+                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-bold text-gray-900"
                   > − </button>
                   <input
                     type="number"
                     value={quantity}
                     readOnly
-                    className="w-16 px-4 py-2 border border-gray-300 rounded-lg text-center font-bold"
+                    className="w-16 px-4 py-2 border border-gray-300 rounded-lg text-center font-bold text-gray-900"
                   />
                   <button
                     type="button"
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-bold"
+                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg font-bold text-gray-900"
                   > + </button>
                 </div>
               </div>

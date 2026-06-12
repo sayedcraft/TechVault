@@ -21,7 +21,6 @@ export default function ContactPage() {
     e.preventDefault();
     setLoading(true);
     
-    // সিমুলেটেড API কল
     await new Promise((resolve) => setTimeout(resolve, 1500));
     
     setSubmitted(true);
@@ -95,7 +94,7 @@ export default function ContactPage() {
                     value={formData[field]}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
+                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
                     placeholder={`Enter your ${field}`}
                   />
                 </div>
@@ -109,7 +108,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={4}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none placeholder-gray-400"
                   placeholder="Tell us what's on your mind..."
                 />
               </div>

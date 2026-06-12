@@ -1,12 +1,12 @@
 'use client';
 
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-white text-gray-600 border-t border-gray-100 mt-auto">
-      {/* 🔝 টপ সেকশন: মেইন কন্টেন্ট গ্রিড */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
         
-        {/* ১. ব্র্যান্ড ইনফো ও সোশ্যাল লিংক */}
         <div className="flex flex-col items-center md:items-start gap-6">
           <div>
             <h3 className="text-blue-600 font-black text-2xl tracking-tight mb-3">TechVault</h3>
@@ -15,7 +15,6 @@ export default function Footer() {
             </p>
           </div>
           
-          {/* 🌐 পিওর SVG সোশ্যাল মিডিয়া আইকন গ্রুপ (No Package Required) */}
           <div className="flex gap-3">
             {/* Facebook */}
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl border border-gray-200 text-gray-400 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200">
@@ -36,15 +35,13 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* ২. কুইক লিংকস */}
         <div className="flex flex-col md:pl-12 gap-3">
           <h4 className="text-gray-900 font-bold text-base uppercase tracking-wider mb-2">Quick Links</h4>
-          <a href="/items" className="text-sm text-gray-500 hover:text-blue-600 font-semibold transition-colors">All Items</a>
-          <a href="/about" className="text-sm text-gray-500 hover:text-blue-600 font-semibold transition-colors">About Us</a>
-          <a href="/privacy" className="text-sm text-gray-500 hover:text-blue-600 font-semibold transition-colors">Privacy Policy</a>
+          <Link href="/items" className="text-sm text-gray-500 hover:text-blue-600 font-semibold transition-colors">All Items</Link>
+          <Link href="/about" className="text-sm text-gray-500 hover:text-blue-600 font-semibold transition-colors">About Us</Link>
+          <Link href="/privacy" className="text-sm text-gray-500 hover:text-blue-600 font-semibold transition-colors">Privacy Policy</Link>
         </div>
         
-        {/* ৩. কন্ট্যাক্ট বা এক্সট্রা ইনফো সেকশন */}
         <div className="flex flex-col gap-3">
           <h4 className="text-gray-900 font-bold text-base uppercase tracking-wider mb-2">Contact Us</h4>
           <p className="text-sm text-gray-500 font-medium"> Chattogram, Bangladesh</p>
@@ -53,7 +50,6 @@ export default function Footer() {
 
       </div>
 
-      {/* 🧾 বটম সেকশন: কপিরাইট বার */}
       <div className="border-t border-gray-100 bg-gray-50 py-6 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-xs sm:text-sm font-medium text-black">

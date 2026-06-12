@@ -33,7 +33,6 @@ export default function Feature() {
   return (
     <section className="bg-white py-20 lg:py-28 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 📢 সেকশন হেডার */}
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
           <h2 className="text-3xl sm:text-5xl font-black text-gray-900 tracking-tight mb-4">
             Why Choose{" "}
@@ -47,7 +46,6 @@ export default function Feature() {
           </p>
         </div>
 
-        {/* 🎴 ফিচার কার্ড গ্রিড */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {features.map((item) => {
             const IconComponent = item.icon;
@@ -56,27 +54,22 @@ export default function Feature() {
                 key={item.id}
                 className="group relative bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-500/10 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between"
               >
-                {/* কার্ডের ভেতর টপ-ডিজাইন এলিমেন্ট */}
                 <div>
-                  {/* 🌌 মডার্ন আইকন বক্স */}
                   <div
                     className={`inline-flex items-center justify-center p-4 rounded-xl border mb-6 transition-colors duration-300 ${item.bgClass}`}
                   >
                     <IconComponent className="w-8 h-8" strokeWidth={2} />
                   </div>
 
-                  {/* 🔤 টাইটেল */}
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                     {item.title}
                   </h3>
 
-                  {/* 📝 ডেসক্রিপশন */}
                   <p className="text-gray-500 text-sm sm:text-base leading-relaxed font-medium">
                     {item.description}
                   </p>
                 </div>
 
-                {/* 🔗 ডেকোরেটিভ বটম বার (Hover Effect) */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             );

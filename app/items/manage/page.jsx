@@ -56,7 +56,7 @@ export default function ManageItemsPage() {
       {/* Main Content Table (OVERLAP Layout) */}
       <section className="max-w-6xl mx-auto px-4 -mt-16">
         {products.length === 0 ? (
-          /* 📥 Empty State - যদি কোনো প্রোডাক্ট না থাকে */
+          /*  Empty State*/
           <div className="bg-white rounded-3xl p-16 text-center shadow-xl shadow-gray-200/50 border border-gray-100">
             <div className="text-7xl mb-4 select-none">📦</div>
             <h3 className="text-2xl font-bold text-gray-800 mb-2">

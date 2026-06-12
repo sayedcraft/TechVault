@@ -22,7 +22,6 @@ export default function LoginPage() {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/dashboard");
     } catch (err) {
-      // ফায়ারবেস এরর মেসেজটিকে আরও ইউজার ফ্রেন্ডলি করা যেতে পারে
       setError(err.message === "Firebase: Error (auth/invalid-credential)." 
         ? "Invalid email or password." 
         : err.message);
@@ -54,7 +53,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
+              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
               placeholder="name@company.com"
             />
           </div>
@@ -68,7 +67,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
+              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
               placeholder="••••••••"
             />
           </div>

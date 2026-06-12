@@ -2,21 +2,18 @@
 
 import { useState } from 'react';
 import ProductCard from '@/components/ProductCard';
-import { useProduct } from '@/context/ProductContext'; // কনটেক্সট থেকে ডাটা নেওয়ার জন্য
+import { useProduct } from '@/context/ProductContext'; 
 
 export default function ItemsPage() {
   const { products } = useProduct();
   console.log("Total Products in Context:", products.length);
   
-  // ফিল্টার স্টেটগুলো
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
   const [maxPrice, setMaxPrice] = useState(1000); 
 
-  // ডাইনামিক ক্যাটাগরি লিস্ট
   const categories = ['All', ...new Set(products.map((p) => p.category))];
 
-  // ফিল্টার লজিক
   const filteredItems = products.filter((item) => {
     const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = category === 'All' || item.category === category;
@@ -24,7 +21,6 @@ export default function ItemsPage() {
     return matchesSearch && matchesCategory && matchesPrice;
   });
 
-  // রিসেট ফাংশন
   const handleReset = () => {
     setSearch('');
     setCategory('All');

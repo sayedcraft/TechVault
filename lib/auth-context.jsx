@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-// তোমার ফায়ারবেস ফাইলের সঠিক পাথটি এখানে নিশ্চিত করে নাও (যেমন: "@/lib/firebase" বা "./firebase")
 import { auth } from "./firebase"; 
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
