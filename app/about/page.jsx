@@ -96,7 +96,7 @@ export default function AboutPage() {
             context-driven management, and quick database fetches.
           </p>
           <Link
-            href="/products"
+            href="/items"
             className="inline-block bg-white hover:bg-gray-100 text-gray-900 font-bold px-6 py-3 rounded-xl transition shadow-md active:scale-[0.98]"
           >
             Start Exploring Products

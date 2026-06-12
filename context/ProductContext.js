@@ -6,32 +6,35 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const ProductContext = createContext();
 
-export function ProductProvider({ children }) {
+export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("TechVault_products");
+    // প্রথমেই চেক করবে লোকাল স্টোরেজে ডাটা আছে কি না
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('techVaultProducts');
       return saved ? JSON.parse(saved) : productsData;
     }
     return productsData;
   });
 
+  // প্রোডাক্ট চেঞ্জ হলে লোকাল স্টোরেজে সেভ করবে
   useEffect(() => {
-    localStorage.setItem("TechVault_products", JSON.stringify(products));
+    localStorage.setItem('techVaultProducts', JSON.stringify(products));
   }, [products]);
 
   const addProduct = (newProduct) => {
-    setProducts((prev) => [...prev, { ...newProduct, id: Date.now() }]);
-  };
-
-  const deleteProduct = (id) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
+    setProducts((prev) => [...prev, newProduct]);
   };
 
   return (
-    <ProductContext.Provider value={{ products, addProduct, deleteProduct }}>
+    <ProductContext.Provider value={{ products, addProduct }}>
       {children}
     </ProductContext.Provider>
   );
-}
+};
 
 export const useProduct = () => useContext(ProductContext);
+
+
+
+
+

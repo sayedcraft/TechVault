@@ -2,18 +2,21 @@
 
 import { useState } from 'react';
 import ProductCard from '@/components/ProductCard';
-import { useProduct } from '@/context/ProductContext';
+import { useProduct } from '@/context/ProductContext'; // কনটেক্সট থেকে ডাটা নেওয়ার জন্য
 
 export default function ItemsPage() {
   const { products } = useProduct();
+  console.log("Total Products in Context:", products.length);
+  
+  // ফিল্টার স্টেটগুলো
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
-  const [maxPrice, setMaxPrice] = useState(250);
+  const [maxPrice, setMaxPrice] = useState(1000); 
 
-  // 💡 ১. ডায়নামিক ক্যাটাগরি লিস্ট (অটোমেটিক আপডেট হবে)
+  // ডাইনামিক ক্যাটাগরি লিস্ট
   const categories = ['All', ...new Set(products.map((p) => p.category))];
 
-  // 💡 ২. ফিল্টার লজিক
+  // ফিল্টার লজিক
   const filteredItems = products.filter((item) => {
     const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = category === 'All' || item.category === category;
@@ -21,17 +24,17 @@ export default function ItemsPage() {
     return matchesSearch && matchesCategory && matchesPrice;
   });
 
-  // 💡 ৩. রিসেট ফাংশন (UX-এর জন্য জরুরি)
+  // রিসেট ফাংশন
   const handleReset = () => {
     setSearch('');
     setCategory('All');
-    setMaxPrice(250);
+    setMaxPrice(1000);
   };
 
   return (
     <div className="bg-gray-50 min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-black text-gray-900 text-center mb-10">Explore Our Items</h1>
+        <h1 className="text-4xl font-black text-gray-900 text-center mb-10">Our Products</h1>
 
         {/* Filters Section */}
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-10 grid md:grid-cols-4 gap-6 items-end">
@@ -69,7 +72,7 @@ export default function ItemsPage() {
             <input 
               type="range"
               min="10"
-              max="250"
+              max="1000"
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
@@ -85,7 +88,7 @@ export default function ItemsPage() {
           </button>
         </div>
 
-        {/* Grid View */}
+        {/* Product Grid */}
         {filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredItems.map(product => (
@@ -94,7 +97,7 @@ export default function ItemsPage() {
           </div>
         ) : (
           <div className="text-center py-20">
-            <p className="text-gray-500 font-semibold text-lg mb-2">No items found match your criteria.</p>
+            <p className="text-gray-500 font-semibold text-lg mb-2">No items found matching your criteria.</p>
             <button onClick={handleReset} className="text-blue-600 font-bold hover:underline">Clear all filters</button>
           </div>
         )}

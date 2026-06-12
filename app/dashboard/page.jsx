@@ -1,6 +1,7 @@
 'use client';
 
 import { useAuth } from '@/lib/auth-context';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -93,12 +94,12 @@ export default function DashboardPage() {
           <div className="bg-gray-100 rounded-lg p-8 text-center">
             <div className="text-5xl mb-4">📭</div>
             <p className="text-gray-600 text-lg">No orders yet. Start shopping!</p>
-            <a
-              href="/products"
+            <Link
+              href="/items"
               className="inline-block mt-4 bg-blue-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
             >
               Browse Products
-            </a>
+            </Link>
           </div>
         </div>
       </div>

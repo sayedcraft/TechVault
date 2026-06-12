@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm backdrop-blur-md bg-white/90">
@@ -50,6 +52,14 @@ export default function Navbar() {
                   <div className="px-4 py-2 border-b border-gray-100 text-xs text-gray-500 font-medium truncate">
                     {user.email}
                   </div>
+
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-semibold"
+                  >
+                    📊 Dashboard
+                  </Link>
                   <Link
                     href="/items/add"
                     onClick={() => setIsOpen(false)}
@@ -64,10 +74,12 @@ export default function Navbar() {
                   >
                     ⚙️ Manage Products
                   </Link>
+                  
                   <button
                     onClick={() => {
                       logout();
                       setIsOpen(false);
+                      router.push("/");
                     }}
                     className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-bold border-t border-gray-100"
                   >

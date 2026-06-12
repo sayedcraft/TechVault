@@ -1,12 +1,14 @@
 "use client";
 
 import { useAuth } from "@/lib/auth-context";
+import { useProduct } from "@/context/ProductContext"; // তোমার কোডের useProduct-এর জন্য
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function AddProductPage() {
-  const { user, loading } = useAuth();
+  const { user, loading } = useAuth(); // 👈 এখন এটি পারফেক্টলি ডেটা পাবে!
+  const { addProduct } = useProduct();
   const router = useRouter();
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
@@ -23,7 +25,7 @@ export default function AddProductPage() {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/auth/login");
+      router.push("/login");
     }
   }, [user, loading, router]);
 

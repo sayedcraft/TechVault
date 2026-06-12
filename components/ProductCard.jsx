@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
         <div className="flex items-center justify-between pt-4 border-t border-gray-50">
           <span className="text-2xl font-black text-gray-900">${product.price}</span>
           <Link
-            href={`/products/${product.id}`}
+            href={`/items/${product.id}`}
             className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
           >
             Details →
