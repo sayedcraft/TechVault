@@ -10,7 +10,7 @@ export default function ManageProductsPage() {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/auth/login");
+      router.push("/login");
     }
   }, [user, loading, router]);
 

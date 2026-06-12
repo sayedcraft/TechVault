@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -22,7 +22,10 @@ export default function LoginPage() {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/dashboard");
     } catch (err) {
-      setError(err.message);
+      // ফায়ারবেস এরর মেসেজটিকে আরও ইউজার ফ্রেন্ডলি করা যেতে পারে
+      setError(err.message === "Firebase: Error (auth/invalid-credential)." 
+        ? "Invalid email or password." 
+        : err.message);
     } finally {
       setLoading(false);
     }
@@ -30,34 +33,34 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+        <h1 className="text-3xl font-black text-center text-gray-900 mb-8">
           Login to TechVault
         </h1>
 
         {error && (
-          <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 text-sm font-medium rounded-xl">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleLogin} className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
-              Email
+            <label className="block text-sm font-bold text-gray-700 mb-2">
+              Email Address
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-              placeholder="your@email.com"
+              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
+              placeholder="name@company.com"
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label className="block text-sm font-bold text-gray-700 mb-2">
               Password
             </label>
             <input
@@ -65,7 +68,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400"
               placeholder="••••••••"
             />
           </div>
@@ -73,17 +76,17 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-bold py-2 rounded-lg transition"
+            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-blue-100"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        <p className="text-center text-gray-600 mt-6">
-          Do not have an account?{" "}
+        <p className="text-center text-gray-600 text-sm mt-6">
+          Don't have an account?{" "}
           <Link
             href="/register"
-            className="text-blue-600 font-semibold hover:underline"
+            className="text-blue-600 font-bold hover:underline"
           >
             Sign Up
           </Link>

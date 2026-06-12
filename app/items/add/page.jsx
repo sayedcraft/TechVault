@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 import { useProduct } from '@/context/ProductContext';
-import { productsData } from '@/lib/products'; // ক্যাটাগরির জন্য ইম্পোর্ট
+import { productsData } from '@/lib/products';
 
 export default function AddItemPage() {
   const { user, loading: authLoading } = useAuth();
@@ -16,18 +16,16 @@ export default function AddItemPage() {
     shortDesc: '',
     description: '',
     price: '',
-    category: '', // ডিফল্ট প্রথম ক্যাটাগরি সেট হবে
-    icon: '⚡', // ডিফল্ট আইকন সেট করা হলো
+    category: '',
+    icon: '⚡',
   });
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 🛡️ ডায়নামিকভাবে ক্যাটাগরি লিস্ট জেনারেট
   const categories = [...new Set(productsData.map((p) => p.category))];
 
   useEffect(() => {
-    // ডিফল্ট ক্যাটাগরি সেট করা
     if (categories.length > 0 && !formData.category) {
       setFormData((prev) => ({ ...prev, category: categories[0] }));
     }
@@ -42,7 +40,6 @@ export default function AddItemPage() {
     setFormError("");
     setIsSubmitting(true);
 
-    // 📋 ভ্যালিডেশন চেক
     if (!formData.name.trim()) {
       setFormError("Product title is required");
       setIsSubmitting(false);
@@ -62,14 +59,13 @@ export default function AddItemPage() {
       return;
     }
 
-    // 📦 গ্যাজেট আইটেম তৈরি
     const newItem = {
-      id: Date.now(), // ডায়নামিক আইডি
+      id: Date.now(),
       name: formData.name.trim(),
       category: formData.category,
       price: priceNum,
-      rating: 5.0, // নতুন গ্যাজেটের জন্য ৫ স্টার ডিফল্ট
-      icon: formData.icon.trim() || "⚡", // ইউজারের দেওয়া ইমোজি আইকন
+      rating: 5.0,
+      icon: formData.icon.trim() || "⚡",
       description: formData.description.trim(),
       inStock: true,
       specifications: [formData.shortDesc.trim()],
@@ -91,19 +87,16 @@ export default function AddItemPage() {
     }
   };
 
-  // 🛡️ অথেন্টিকেশন লোডিং চেক
   if (authLoading) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-2xl font-bold text-blue-600 animate-pulse">Checking credentials...</div>
     </div>
   );
 
-  // 🛑 ইউজার না থাকলে কিছু রেন্ডার করবে না
   if (!user) return null;
 
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
-      {/* Hero Header */}
       <section className="bg-gradient-to-br from-blue-600 to-indigo-700 pt-20 pb-28 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-black mb-4">Add New Gadget</h1>
@@ -111,10 +104,8 @@ export default function AddItemPage() {
         </div>
       </section>
 
-      {/* Main Content Card (OVERLAP) */}
       <section className="max-w-3xl mx-auto px-4 -mt-16">
         <div className="bg-white p-8 rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100/50">
-          
           {submitted && (
             <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl font-bold text-center animate-fade-in">
               ✓ Success! New gadget added to inventory. Redirecting...
@@ -128,8 +119,6 @@ export default function AddItemPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            
-            {/* Title & Icon Grid */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="md:col-span-3">
                 <label className="block text-sm font-bold text-gray-700 mb-2">Gadget Title</label>
@@ -138,7 +127,7 @@ export default function AddItemPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   placeholder="e.g. Mechanical Keyboard"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
                 />
               </div>
               <div>
@@ -149,12 +138,11 @@ export default function AddItemPage() {
                   value={formData.icon}
                   onChange={(e) => setFormData({...formData, icon: e.target.value})}
                   placeholder="⚡"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-center text-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-center text-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
                 />
               </div>
             </div>
 
-            {/* Short Spec */}
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2">Short Specification</label>
               <input 
@@ -162,11 +150,10 @@ export default function AddItemPage() {
                 value={formData.shortDesc}
                 onChange={(e) => setFormData({...formData, shortDesc: e.target.value})}
                 placeholder="e.g. RGB Backlit, Mechanical Switches"
-                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition"
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
               />
             </div>
 
-            {/* Price & Category */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2">Price ($)</label>
@@ -175,7 +162,7 @@ export default function AddItemPage() {
                   value={formData.price}
                   onChange={(e) => setFormData({...formData, price: e.target.value})}
                   placeholder="0.00"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition placeholder-gray-400"
                 />
               </div>
               <div>
@@ -183,7 +170,7 @@ export default function AddItemPage() {
                 <select 
                   value={formData.category}
                   onChange={(e) => setFormData({...formData, category: e.target.value})}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition bg-no-repeat bg-right"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>{cat}</option>
@@ -192,7 +179,6 @@ export default function AddItemPage() {
               </div>
             </div>
 
-            {/* Full Description */}
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2">Full Description</label>
               <textarea 
@@ -200,11 +186,10 @@ export default function AddItemPage() {
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
                 placeholder="Tell users more about this awesome gadget..."
-                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition resize-none"
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition resize-none placeholder-gray-400"
               />
             </div>
 
-            {/* Submit Button */}
             <button 
               type="submit" 
               disabled={isSubmitting}
@@ -215,7 +200,6 @@ export default function AddItemPage() {
             >
               {isSubmitting ? "🚀 Adding Gadget..." : "➕ Add to Inventory"}
             </button>
-          
           </form>
         </div>
       </section>
